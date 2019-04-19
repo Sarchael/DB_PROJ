@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.util.List;
+
 public class AnchorPaneController {
 
     DBControll database;
@@ -15,6 +17,8 @@ public class AnchorPaneController {
     private Button bCreate;
     @FXML
     private Button bRead;
+    @FXML
+    private Button bReadAll;
     @FXML
     private TextField tfID;
     @FXML
@@ -38,7 +42,8 @@ public class AnchorPaneController {
         String city = tfCity.getText();
 
         if(!name.isEmpty() && !surname.isEmpty() && !city.isEmpty()){
-            database.create(name, surname, city);
+            Pracownik p = new Pracownik(name, surname, city);
+            database.create(p);
             lResults.setText("Created succesfully!");
         }
         else{
@@ -50,11 +55,32 @@ public class AnchorPaneController {
     private void read(){
         try{
             int id = Integer.parseInt(tfID.getText());
-            Pracownik p = database.singleRead(id);
+            Pracownik p = database.singleReadByID(Pracownik.class, id);
             lResults.setText(p.toString());
         }
         catch(NumberFormatException nfe){
             lResults.setText("ID has to be number!");
+        }
+        catch(Exception e){
+            lResults.setText("No record with such ID!");
+        }
+    }
+
+    @FXML
+    private void readAll(){
+        try {
+            List<Pracownik> list = database.readAll(Pracownik.class);
+
+            if(!list.isEmpty()) {
+                String result = "";
+                for (Pracownik p : list) {
+                    result += p.toString() + "\n";
+                }
+                lResults.setText(result);
+            }
+            else{
+                lResults.setText("No record in table!");
+            }
         }
         catch(Exception e){
             lResults.setText("No record with such ID!");

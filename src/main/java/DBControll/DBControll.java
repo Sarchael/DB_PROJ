@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class DBControll {
 
     private SessionFactory sfactory;
@@ -13,29 +15,36 @@ public class DBControll {
     public DBControll(){
         sfactory=new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Pracownik.class)
+                .addAnnotatedClass(Pracownik.class) // tu trzeba bedzie dodac inne encje jak się je doda
                 .buildSessionFactory();
     }
 
-    public void create(String name, String surname, String city){
-
-        Pracownik p = new Pracownik(name, surname, city);
+    public <T> void create(T c){
 
         session = sfactory.getCurrentSession();
         session.beginTransaction();
-        session.save(p);
+        session.save(c);
         session.getTransaction().commit();
     }
 
-    public Pracownik singleRead(int id) throws Exception{
+    public <T> T singleReadByID(Class<T> c, int id) throws Exception{
 
         session = sfactory.getCurrentSession();
         session.beginTransaction();
 
-        Pracownik p = session.get(Pracownik.class, id);
+        T t = session.get(c, id);
 
         session.getTransaction().commit();
 
-        return p;
+        return t;
+    }
+
+    public <T> List<T> readAll(Class<T> c){
+
+        session = sfactory.getCurrentSession();
+        session.beginTransaction();
+        List<T> list = session.createQuery("from " + c.getSimpleName()).getResultList();
+        session.getTransaction().commit();
+        return list;
     }
 }
