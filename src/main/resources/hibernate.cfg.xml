@@ -8,9 +8,9 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/warsztat?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://185.24.216.103:3306/warsztat?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="connection.username">bdproj</property>
-        <property name="connection.password">bdproj</property>
+        <property name="connection.password">BDproj123!</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
