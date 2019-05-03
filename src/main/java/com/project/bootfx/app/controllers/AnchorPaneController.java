@@ -1,7 +1,13 @@
 package com.project.bootfx.app.controllers;
 
+import com.project.bootfx.app.dao.MiastoDAO;
 import com.project.bootfx.app.dao.PracownikDAO;
+import com.project.bootfx.app.dao.StanowiskoDAO;
+import com.project.bootfx.app.dao.WojewodztwoDAO;
+import com.project.bootfx.app.entity.Miasto;
 import com.project.bootfx.app.entity.Pracownik;
+import com.project.bootfx.app.entity.Stanowisko;
+import com.project.bootfx.app.entity.Wojewodztwo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,6 +22,15 @@ public class AnchorPaneController {
     @Autowired
     private PracownikDAO pracownikDAO;
 
+    @Autowired
+    private MiastoDAO miastoDAO;
+
+    @Autowired
+    private WojewodztwoDAO wojewodztwoDAO;
+
+    @Autowired
+    private StanowiskoDAO stanowiskoDAO;
+
     @FXML
     private TextField tfID;
     @FXML
@@ -29,7 +44,7 @@ public class AnchorPaneController {
 
     @FXML
     private void create(){
-        String name = tfName.getText();
+        /*String name = tfName.getText();
         String surname = tfSurname.getText();
         String city = tfCity.getText();
 
@@ -40,12 +55,32 @@ public class AnchorPaneController {
         }
         else{
             lResults.setText("Every field has to be filled!");
-        }
+        }*/
+
+        /*
+        // TAK DZIALA ZAPIS!!! heheh juz dziala sto razy lepiej ale gdzie indziej xd
+        Stanowisko stanowisko = new Stanowisko("Szef");
+        Miasto miasto = new Miasto("Debica", "Debica", "Debicki");
+        Wojewodztwo wojewodztwo = new Wojewodztwo("Podkarpackie");
+        Pracownik pracownik = new Pracownik("Michal", "Pochec", "98022005552", "Smugowa");
+
+        wojewodztwoDAO.save(wojewodztwo);
+        miasto.setWojewodztwo(wojewodztwo);
+        miastoDAO.save(miasto);
+        stanowiskoDAO.save(stanowisko);
+        pracownik.setMiasto(miasto);
+        pracownik.setStanowisko(stanowisko);
+        pracownikDAO.save(pracownik);*/
+
+        Wojewodztwo woj = wojewodztwoDAO.getByID(1);
+        List<Miasto> lista = woj.getMiasta();
+        for(Miasto m : lista)
+            System.out.println(m);
     }
 
     @FXML
     private void read(){
-        try{
+        /*try{
             int id = Integer.parseInt(tfID.getText());
             Pracownik p = pracownikDAO.getByID(id);
             lResults.setText(p.toString());
@@ -55,12 +90,12 @@ public class AnchorPaneController {
         }
         catch(Exception e){
             lResults.setText("No record with such ID!");
-        }
+        }*/
     }
 
     @FXML
     private void readAll(){
-        try {
+       /* try {
             List<Pracownik> list = pracownikDAO.getAll();
 
             if(!list.isEmpty()) {
@@ -76,6 +111,6 @@ public class AnchorPaneController {
         }
         catch(Exception e){
             lResults.setText("No record with such ID!");
-        }
+        }*/
     }
 }

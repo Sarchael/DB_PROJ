@@ -3,7 +3,7 @@ package com.project.bootfx.app.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="pracownicy")
+@Table(name="pracownik")
 public class Pracownik {
 
     @Id
@@ -17,16 +17,28 @@ public class Pracownik {
     @Column(name="nazwisko")
     private String nazwisko;
 
-    @Column(name="miasto")
-    private String miasto;
+    @Column(name="pesel")
+    private String pesel;
 
+    @Column(name="ulica")
+    private String ulica;
 
-    public Pracownik(){}
+    @ManyToOne
+    @JoinColumn(name="id_miasta")
+    private Miasto miasto;
 
-    public Pracownik(String imie, String nazwisko, String miasto) {
+    @ManyToOne
+    @JoinColumn(name="id_stan")
+    private Stanowisko stanowisko;
+
+    public Pracownik() {
+    }
+
+    public Pracownik(String imie, String nazwisko, String pesel, String ulica) {
         this.imie = imie;
         this.nazwisko = nazwisko;
-        this.miasto = miasto;
+        this.pesel = pesel;
+        this.ulica = ulica;
     }
 
     public int getId() {
@@ -53,16 +65,70 @@ public class Pracownik {
         this.nazwisko = nazwisko;
     }
 
-    public String getMiasto() {
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getUlica() {
+        return ulica;
+    }
+
+    public void setUlica(String ulica) {
+        this.ulica = ulica;
+    }
+
+    public Miasto getMiasto() {
         return miasto;
     }
 
-    public void setMiasto(String miasto) {
+    public void setMiasto(Miasto miasto) {
+        if(sameAsFormer(miasto))
+            return;
+        Miasto oldMiasto = this.miasto;
         this.miasto = miasto;
+        if(oldMiasto!=null)
+            oldMiasto.removePracownik(this);
+        if(miasto!=null)
+            miasto.addPracownik(this);
+    }
+
+    private boolean sameAsFormer(Miasto newMiasto) {
+        return miasto==null? newMiasto == null : miasto.equals(newMiasto);
+    }
+
+    public Stanowisko getStanowisko() {
+        return stanowisko;
+    }
+
+    public void setStanowisko(Stanowisko stanowisko) {
+        if(sameAsFormer(stanowisko))
+            return;
+        Stanowisko oldStanowisko = this.stanowisko;
+        this.stanowisko = stanowisko;
+        if(oldStanowisko!=null)
+            oldStanowisko.removePracownik(this);
+        if(stanowisko!=null)
+            stanowisko.addPracownik(this);
+    }
+
+    private boolean sameAsFormer(Stanowisko newStanowisko) {
+        return stanowisko==null? newStanowisko == null : stanowisko.equals(newStanowisko);
     }
 
     @Override
     public String toString() {
-        return "[ ID: " + id + ", IMIE: " + imie + ", NAZWISKO: " + nazwisko + ", MIASTO: " + miasto + " ]";
+        return "Pracownik{" +
+                "id=" + id +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", ulica='" + ulica + '\'' +
+                ", miasto=" + miasto +
+                ", stanowisko=" + stanowisko +
+                '}';
     }
 }
