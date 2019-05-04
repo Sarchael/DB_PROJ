@@ -78,6 +78,9 @@ public class Dostawca {
     public String toString(){
         return "Dostawca{" +
                 "id= " + id
-                +", nazwa= " + nazwa;
+                +", nazwa= " + nazwa
+                +", nip" + nip
+                +", nr_tel" + nr_tel
+                +", miasto" + miasto.getNazwa();
     }
 }
