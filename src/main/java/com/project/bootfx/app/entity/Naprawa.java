@@ -35,7 +35,7 @@ public class Naprawa {
     private Pracownik pracownikOdp;
 
     @OneToMany(mappedBy = "naprawa")
-    private List<UzyteMaterialy> uzyteMaterialies;
+    private List<UzytyMaterial> uzyteMaterialy;
 
     public Naprawa() {
     }
@@ -125,28 +125,28 @@ public class Naprawa {
         return pracownikOdp==null? newPracownikOdp == null : pracownikOdp.equals(newPracownikOdp);
     }
 
-    public List<UzyteMaterialy> getUzyteMaterialy() {
-        return new ArrayList<UzyteMaterialy>(uzyteMaterialies);
+    public List<UzytyMaterial> getUzyteMaterialy() {
+        return new ArrayList<UzytyMaterial>(uzyteMaterialy);
     }
 
-    public void addUzyteMaterialy(UzyteMaterialy uzyteMaterialy){
-        if(uzyteMaterialies == null){
-            uzyteMaterialies = new ArrayList<>();
-            uzyteMaterialies.add(uzyteMaterialy);
-            uzyteMaterialy.setNaprawa(this);
+    public void addUzytyMaterial(UzytyMaterial uzytyMaterial){
+        if(uzyteMaterialy == null){
+            uzyteMaterialy = new ArrayList<>();
+            uzyteMaterialy.add(uzytyMaterial);
+            uzytyMaterial.setNaprawa(this);
             return;
         }
-        if(uzyteMaterialies.contains(uzyteMaterialy))
+        if(uzyteMaterialy.contains(uzytyMaterial))
             return;
-        uzyteMaterialies.add(uzyteMaterialy);
-        uzyteMaterialy.setNaprawa(this);
+        uzyteMaterialy.add(uzytyMaterial);
+        uzytyMaterial.setNaprawa(this);
     }
 
-    public void remoteUzyteMaterialy(UzyteMaterialy uzyteMaterialy){
-        if(!uzyteMaterialies.contains(uzyteMaterialy))
+    public void removeUzytyMaterial(UzytyMaterial uzytyMaterial){
+        if(!uzyteMaterialy.contains(uzytyMaterial))
             return;
-        uzyteMaterialies.remove(uzyteMaterialy);
-        uzyteMaterialy.setNaprawa(null);
+        uzyteMaterialy.remove(uzytyMaterial);
+        uzytyMaterial.setNaprawa(null);
     }
 
     @Override

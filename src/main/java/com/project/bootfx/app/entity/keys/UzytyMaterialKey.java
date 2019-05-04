@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class UzyteMaterialyKey implements Serializable {
+public class UzytyMaterialKey implements Serializable {
 
     @Column(name = "id_mat")
     Long materialId;
@@ -14,10 +14,10 @@ public class UzyteMaterialyKey implements Serializable {
     @Column(name = "id_nap")
     Long naprawaId;
 
-    public UzyteMaterialyKey() {
+    public UzytyMaterialKey() {
     }
 
-    public UzyteMaterialyKey(Long materialId, Long naprawaId) {
+    public UzytyMaterialKey(Long materialId, Long naprawaId) {
         this.materialId = materialId;
         this.naprawaId = naprawaId;
     }
@@ -42,7 +42,7 @@ public class UzyteMaterialyKey implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UzyteMaterialyKey that = (UzyteMaterialyKey) o;
+        UzytyMaterialKey that = (UzytyMaterialKey) o;
         return materialId.equals(that.materialId) &&
                 naprawaId.equals(that.naprawaId);
     }
