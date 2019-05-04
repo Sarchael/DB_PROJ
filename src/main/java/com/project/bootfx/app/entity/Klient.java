@@ -1,6 +1,7 @@
 package com.project.bootfx.app.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,7 +35,7 @@ public class Klient {
     private Miasto miasto;
 
     @OneToMany(mappedBy = "klient", fetch = FetchType.EAGER)
-    private List<Zamowienie> zamowienia;
+    private List<Samochod> samochody;
 
     public Klient() {
     }
@@ -109,7 +110,42 @@ public class Klient {
     }
 
     public void setMiasto(Miasto miasto) {
+        if(sameAsFormer(miasto))
+            return;
+        Miasto oldMiasto = this.miasto;
         this.miasto = miasto;
+        if(oldMiasto!=null)
+            oldMiasto.removeKlient(this);
+        if(miasto!=null)
+            miasto.addKlient(this);
+    }
+
+    private boolean sameAsFormer(Miasto newMiasto) {
+        return miasto==null? newMiasto == null : miasto.equals(newMiasto);
+    }
+
+    public List<Samochod> getSamochod() {
+        return new ArrayList<Samochod>(samochody);
+    }
+
+    public void addSamochod(Samochod samochod){
+        if(samochody == null){
+            samochody = new ArrayList<>();
+            samochody.add(samochod);
+            samochod.setKlient(this);
+            return;
+        }
+        if(samochody.contains(samochod))
+            return;
+        samochody.add(samochod);
+        samochod.setKlient(this);
+    }
+
+    public void removeSamochod(Samochod samochod){
+        if(!samochody.contains(samochod))
+            return;
+        samochody.remove(samochod);
+        samochod.setKlient(this);
     }
 
     @Override
