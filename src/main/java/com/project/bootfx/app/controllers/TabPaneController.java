@@ -1,5 +1,6 @@
 package com.project.bootfx.app.controllers;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
@@ -14,6 +15,9 @@ public class TabPaneController {
 
     @Autowired
     private ApplicationContext context;
+
+    @Autowired
+    private DodajSamochodTabController dodajSamochodTabController;
 
     @FXML
     private TabPane tabPane;
@@ -48,5 +52,9 @@ public class TabPaneController {
         fxmlLoader.setLocation(getClass().getResource("/DodajSamochod.fxml"));
         anchorPane = fxmlLoader.load();
         tabDodajSamochod.setContent(anchorPane);
+    }
+
+    public void onSamochodTabSelected(Event event) {
+        dodajSamochodTabController.initialize();
     }
 }

@@ -7,6 +7,6 @@
   <tabs>
     <Tab fx:id="tabWyszukajKlienta" text="Wyszukaj Klienta" />
     <Tab fx:id="tabDodajKlienta" text="Dodaj Klienta" />
-      <Tab fx:id="tabDodajSamochod" text="Dodaj Samochód" />
+      <Tab fx:id="tabDodajSamochod" onSelectionChanged="#onSamochodTabSelected" text="Dodaj Samochód" />
   </tabs>
 </TabPane>
