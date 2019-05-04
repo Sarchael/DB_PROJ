@@ -52,14 +52,7 @@ public class DodajSamochodTabController {
 
     @FXML
     public void initialize() {
-        List<String> imieNazwisko = new ArrayList<>();
-        List<Klient> klienci = dataAccessObject.readAll(Klient.class);
-        for (Klient klient : klienci)
-            imieNazwisko.add(klient.getImie() + " " + klient.getNazwisko());
-
-        ObservableList<String> fxImieNazwisko = FXCollections.observableList(imieNazwisko);
-        cbImieNazwisko.setItems(fxImieNazwisko);
-
+        updateKlienci();
         Set<String> marki = new HashSet<>();
         List<Model> models = dataAccessObject.readAll(Model.class);
         for (Model model : models)
@@ -69,6 +62,16 @@ public class DodajSamochodTabController {
         cbMarka.setItems(fxMarki);
 
 
+    }
+
+    public  void updateKlienci(){
+        List<String> imieNazwisko = new ArrayList<>();
+        List<Klient> klienci = dataAccessObject.readAll(Klient.class);
+        for (Klient klient : klienci)
+            imieNazwisko.add(klient.getImie() + " " + klient.getNazwisko());
+
+        ObservableList<String> fxImieNazwisko = FXCollections.observableList(imieNazwisko);
+        cbImieNazwisko.setItems(fxImieNazwisko);
     }
 
     private void clearLabels() {

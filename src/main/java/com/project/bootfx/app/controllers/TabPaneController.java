@@ -55,6 +55,6 @@ public class TabPaneController {
     }
 
     public void onSamochodTabSelected(Event event) {
-        dodajSamochodTabController.initialize();
+        dodajSamochodTabController.updateKlienci();
     }
 }
