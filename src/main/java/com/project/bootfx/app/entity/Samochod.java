@@ -1,6 +1,8 @@
 package com.project.bootfx.app.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="samochod")
@@ -30,6 +32,9 @@ public class Samochod {
     @ManyToOne
     @JoinColumn(name="id_kl")
     private Klient klient;
+
+    @OneToMany(mappedBy = "samochod", fetch = FetchType.EAGER)
+    private List<Naprawa> naprawy;
 
     public Samochod() {
     }
@@ -86,7 +91,18 @@ public class Samochod {
     }
 
     public void setModel(Model model) {
+        if(sameAsFormer(model))
+            return;
+        Model oldModel = this.model;
         this.model = model;
+        if(oldModel!=null)
+            oldModel.removeSamochod(this);
+        if(model!=null)
+            model.addSamochod(this);
+    }
+
+    private boolean sameAsFormer(Model newModel) {
+        return model==null? newModel == null : model.equals(newModel);
     }
 
     public Klient getKlient() {
@@ -94,7 +110,42 @@ public class Samochod {
     }
 
     public void setKlient(Klient klient) {
+        if(sameAsFormer2(klient))
+            return;
+        Klient oldKlient = this.klient;
         this.klient = klient;
+        if(oldKlient!=null)
+            oldKlient.removeSamochod(this);
+        if(klient!=null)
+            klient.addSamochod(this);
+    }
+
+    private boolean sameAsFormer2(Klient newKlient) {
+        return klient==null? newKlient == null : klient.equals(newKlient);
+    }
+
+    public List<Naprawa> getNaprawy() {
+        return naprawy;
+    }
+
+    public void addNaprawa(Naprawa naprawa){
+        if(naprawy == null){
+            naprawy = new ArrayList<>();
+            naprawy.add(naprawa);
+            naprawa.setSamochod(this);
+            return;
+        }
+        if(naprawy.contains(naprawa))
+            return;
+        naprawy.add(naprawa);
+        naprawa.setSamochod(this);
+    }
+
+    public void removeNaprawa(Naprawa naprawa){
+        if(!naprawy.contains(naprawa))
+            return;
+        naprawy.remove(naprawa);
+        naprawa.setSamochod(null);
     }
 
     @Override
