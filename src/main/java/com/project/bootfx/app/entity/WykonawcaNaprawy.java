@@ -51,7 +51,18 @@ public class WykonawcaNaprawy {
     }
 
     public void setPracownik(Pracownik pracownik) {
+        if(sameAsFormer(pracownik))
+            return;
+        Pracownik oldPracownik = this.pracownik;
         this.pracownik = pracownik;
+        if(oldPracownik!=null)
+            oldPracownik.removeListaNapraw(this);
+        if(pracownik!=null)
+            pracownik.addListaNapraw(this);
+    }
+
+    private boolean sameAsFormer(Pracownik newPracownik) {
+        return pracownik==null? newPracownik == null : pracownik.equals(newPracownik);
     }
 
     public Naprawa getNaprawa() {
@@ -59,7 +70,18 @@ public class WykonawcaNaprawy {
     }
 
     public void setNaprawa(Naprawa naprawa) {
+        if(sameAsFormer2(naprawa))
+            return;
+        Naprawa oldNaprawa = this.naprawa;
         this.naprawa = naprawa;
+        if(oldNaprawa!=null)
+            oldNaprawa.removeListaPracownikow(this);
+        if(naprawa!=null)
+            naprawa.addListaPracownikow(this);
+    }
+
+    private boolean sameAsFormer2(Naprawa newNaprawa) {
+        return naprawa==null? newNaprawa == null : naprawa.equals(newNaprawa);
     }
 
     public int getCzasPracy() {
