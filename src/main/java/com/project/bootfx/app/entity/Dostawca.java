@@ -1,6 +1,8 @@
 package com.project.bootfx.app.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="dostawca")
@@ -23,6 +25,9 @@ public class Dostawca {
     @ManyToOne
     @JoinColumn(name ="id_miasta")
     private Miasto miasto;
+
+    @OneToMany(mappedBy = "dostawca", fetch = FetchType.EAGER)
+    private List<Zamowienie> zamowienia;
 
     Dostawca(){
 
@@ -72,6 +77,30 @@ public class Dostawca {
 
     public void setMiasto(Miasto miasto) {
         this.miasto = miasto;
+    }
+
+    public List<Zamowienie> getZamowienia() {
+        return new ArrayList<Zamowienie>(zamowienia);
+    }
+
+    public void addZamowienie(Zamowienie zamowienie){
+        if(zamowienia == null){
+            zamowienia = new ArrayList<>();
+            zamowienia.add(zamowienie);
+            zamowienie.setDostawca(this);
+            return;
+        }
+        if(zamowienia.contains(zamowienie))
+            return;
+        zamowienia.add(zamowienie);
+        zamowienie.setDostawca(this);
+    }
+
+    public void removeZamowienie(Zamowienie zamowienie){
+        if(!zamowienia.contains(zamowienie))
+            return;
+        zamowienia.remove(zamowienie);
+        zamowienie.setDostawca(null);
     }
 
     @Override
