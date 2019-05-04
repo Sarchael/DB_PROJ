@@ -21,7 +21,7 @@ public class Material {
     @Column(name ="cena_jedn")
     private int cena_jedn;
 
-    @OneToMany(mappedBy = "zapotrzebowanie", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
     private List<Zapotrzebowanie> zapotrzebowania;
 
     Material(){

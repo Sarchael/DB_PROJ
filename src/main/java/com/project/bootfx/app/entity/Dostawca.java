@@ -1,5 +1,8 @@
 package com.project.bootfx.app.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +29,7 @@ public class Dostawca {
     @JoinColumn(name ="id_miasta")
     private Miasto miasto;
 
-    @OneToMany(mappedBy = "dostawca", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "dostawca")
     private List<Zamowienie> zamowienia;
 
     Dostawca(){

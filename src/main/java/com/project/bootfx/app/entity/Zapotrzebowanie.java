@@ -15,7 +15,7 @@ public class Zapotrzebowanie {
     private int ilosc;
 
     @ManyToOne
-    @JoinColumn(name="id_dost")
+    @JoinColumn(name="id_mat")
     private Material material;
 
     public Zapotrzebowanie() {
