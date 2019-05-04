@@ -2,6 +2,8 @@ package com.project.bootfx.app.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "naprawa")
@@ -31,6 +33,9 @@ public class Naprawa {
     @ManyToOne
     @JoinColumn(name = "id_prac_odp")
     private Pracownik pracownikOdp;
+
+    @OneToMany(mappedBy = "naprawa")
+    private List<UzyteMaterialy> uzyteMaterialies;
 
     public Naprawa() {
     }
@@ -118,6 +123,30 @@ public class Naprawa {
 
     private boolean sameAsFormer2(Pracownik newPracownikOdp) {
         return pracownikOdp==null? newPracownikOdp == null : pracownikOdp.equals(newPracownikOdp);
+    }
+
+    public List<UzyteMaterialy> getUzyteMaterialy() {
+        return new ArrayList<UzyteMaterialy>(uzyteMaterialies);
+    }
+
+    public void addUzyteMaterialy(UzyteMaterialy uzyteMaterialy){
+        if(uzyteMaterialies == null){
+            uzyteMaterialies = new ArrayList<>();
+            uzyteMaterialies.add(uzyteMaterialy);
+            uzyteMaterialy.setNaprawa(this);
+            return;
+        }
+        if(uzyteMaterialies.contains(uzyteMaterialy))
+            return;
+        uzyteMaterialies.add(uzyteMaterialy);
+        uzyteMaterialy.setNaprawa(this);
+    }
+
+    public void remoteUzyteMaterialy(UzyteMaterialy uzyteMaterialy){
+        if(!uzyteMaterialies.contains(uzyteMaterialy))
+            return;
+        uzyteMaterialies.remove(uzyteMaterialy);
+        uzyteMaterialy.setNaprawa(null);
     }
 
     @Override
