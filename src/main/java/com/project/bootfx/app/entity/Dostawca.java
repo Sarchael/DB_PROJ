@@ -1,6 +1,11 @@
 package com.project.bootfx.app.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="dostawca")
@@ -23,6 +28,9 @@ public class Dostawca {
     @ManyToOne
     @JoinColumn(name ="id_miasta")
     private Miasto miasto;
+
+    @OneToMany(mappedBy = "dostawca")
+    private List<Zamowienie> zamowienia;
 
     Dostawca(){
 
@@ -71,13 +79,51 @@ public class Dostawca {
     }
 
     public void setMiasto(Miasto miasto) {
+        if(sameAsFormer(miasto))
+            return;
+        Miasto oldMiasto = this.miasto;
         this.miasto = miasto;
+        if(oldMiasto!=null)
+            oldMiasto.removeDostawca(this);
+        if(miasto!=null)
+            miasto.addDostawca(this);
+    }
+
+    private boolean sameAsFormer(Miasto newMiasto) {
+        return miasto==null? newMiasto == null : miasto.equals(newMiasto);
+    }
+
+    public List<Zamowienie> getZamowienia() {
+        return new ArrayList<Zamowienie>(zamowienia);
+    }
+
+    public void addZamowienie(Zamowienie zamowienie){
+        if(zamowienia == null){
+            zamowienia = new ArrayList<>();
+            zamowienia.add(zamowienie);
+            zamowienie.setDostawca(this);
+            return;
+        }
+        if(zamowienia.contains(zamowienie))
+            return;
+        zamowienia.add(zamowienie);
+        zamowienie.setDostawca(this);
+    }
+
+    public void removeZamowienie(Zamowienie zamowienie){
+        if(!zamowienia.contains(zamowienie))
+            return;
+        zamowienia.remove(zamowienie);
+        zamowienie.setDostawca(null);
     }
 
     @Override
     public String toString(){
         return "Dostawca{" +
                 "id= " + id
-                +", nazwa= " + nazwa;
+                +", nazwa= " + nazwa
+                +", nip" + nip
+                +", nr_tel" + nr_tel
+                +", miasto" + miasto.getNazwa();
     }
 }
