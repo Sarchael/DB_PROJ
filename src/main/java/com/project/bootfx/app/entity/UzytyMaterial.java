@@ -87,4 +87,12 @@ public class UzytyMaterial {
     private boolean sameAsFormer(Naprawa newNaprawa) {
         return naprawa==null? newNaprawa == null : naprawa.equals(newNaprawa);
     }
+
+    @Override
+    public String toString() {
+        return "Miasto{" +
+                "id=" + id.toString() +
+                ", ilosc=" + ilosc +
+                '}';
+    }
 }
