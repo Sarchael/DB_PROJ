@@ -32,6 +32,9 @@ public class Miasto {
     @OneToMany(mappedBy = "miasto", fetch = FetchType.EAGER)
     private List<Dostawca> dostawcy;
 
+    @OneToMany(mappedBy = "miasto", fetch = FetchType.EAGER)
+    private List<Klient> klienci;
+
     public Miasto() {
     }
 
@@ -138,6 +141,30 @@ public class Miasto {
             return;
         dostawcy.remove(dostawca);
         dostawca.setMiasto(null);
+    }
+
+    public List<Klient> getKlienci() {
+        return new ArrayList<Klient>(klienci);
+    }
+
+    public void addKlient(Klient klient){
+        if(klienci == null){
+            klienci = new ArrayList<>();
+            klienci.add(klient);
+            klient.setMiasto(this);
+            return;
+        }
+        if(klienci.contains(klient))
+            return;
+        klienci.add(klient);
+        klient.setMiasto(this);
+    }
+
+    public void removeKlient(Klient klient){
+        if(!klienci.contains(klient))
+            return;
+        klienci.remove(klient);
+        klient.setMiasto(null);
     }
 
     @Override
