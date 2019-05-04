@@ -33,7 +33,7 @@ public class Pracownik {
     @JoinColumn(name="id_stan")
     private Stanowisko stanowisko;
 
-    @OneToMany(mappedBy = "pracownik", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pracownikOdp", fetch = FetchType.EAGER)
     private List<Naprawa> naprawyOdp;
 
     public Pracownik() {

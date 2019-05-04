@@ -26,13 +26,13 @@ public class Miasto {
     @JoinColumn(name="id_woj")
     private Wojewodztwo wojewodztwo;
 
-    @OneToMany(mappedBy = "miasto", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "miasto")
     private List<Pracownik> pracownicy;
 
-    @OneToMany(mappedBy = "miasto", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "miasto")
     private List<Dostawca> dostawcy;
 
-    @OneToMany(mappedBy = "miasto", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "miasto")
     private List<Klient> klienci;
 
     public Miasto() {
