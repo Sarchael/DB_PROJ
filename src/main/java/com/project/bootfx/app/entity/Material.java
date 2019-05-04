@@ -9,26 +9,32 @@ import java.util.List;
 public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name ="nazwa")
+    @Column(name = "nazwa")
     private String nazwa;
 
-    @Column(name ="ilosc")
+    @Column(name = "ilosc")
     private int ilosc;
 
-    @Column(name ="cena_jedn")
+    @Column(name = "cena_jedn")
     private int cena_jedn;
 
     @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
     private List<Zapotrzebowanie> zapotrzebowania;
 
-    Material(){
+    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    private List<ZamowionyMaterial> zamowioneMaterialy;
+
+    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    private List<UzytyMaterial> uzyteMaterialy;
+
+    Material() {
 
     }
 
-    Material(int id, String nazwa, int ilosc, int cena_jedn){
+    Material(int id, String nazwa, int ilosc, int cena_jedn) {
         this.id = id;
         this.ilosc = ilosc;
         this.nazwa = nazwa;
@@ -67,36 +73,84 @@ public class Material {
         this.cena_jedn = cena_jedn;
     }
 
+    public List<ZamowionyMaterial> getZamowioneMaterialy() {
+        return new ArrayList<ZamowionyMaterial>(zamowioneMaterialy);
+    }
+
+    public void addZamowionyMaterial(ZamowionyMaterial zamowionyMaterial) {
+        if (zamowioneMaterialy == null) {
+            zamowioneMaterialy = new ArrayList<>();
+            zamowioneMaterialy.add(zamowionyMaterial);
+            zamowionyMaterial.setMaterial(this);
+            return;
+        }
+        if (zamowioneMaterialy.contains(zamowionyMaterial))
+            return;
+        zamowioneMaterialy.add(zamowionyMaterial);
+        zamowionyMaterial.setMaterial(this);
+    }
+
+    public void removeZamowionyMaterial(ZamowionyMaterial zamowionyMaterial) {
+        if (!zamowioneMaterialy.contains(zamowionyMaterial))
+            return;
+        zamowioneMaterialy.remove(zamowionyMaterial);
+        zamowionyMaterial.setMaterial(null);
+    }
+
     public List<Zapotrzebowanie> getZapotrzebowania() {
         return new ArrayList<Zapotrzebowanie>(zapotrzebowania);
     }
 
-    public void addZapotrzebowanie(Zapotrzebowanie zapotrzebowanie){
-        if(zapotrzebowania == null){
+    public void addZapotrzebowanie(Zapotrzebowanie zapotrzebowanie) {
+        if (zapotrzebowania == null) {
             zapotrzebowania = new ArrayList<>();
             zapotrzebowania.add(zapotrzebowanie);
             zapotrzebowanie.setMaterial(this);
             return;
         }
-        if(zapotrzebowania.contains(zapotrzebowanie))
+        if (zapotrzebowania.contains(zapotrzebowanie))
             return;
         zapotrzebowania.add(zapotrzebowanie);
         zapotrzebowanie.setMaterial(this);
     }
 
-    public void removeZapotrzebowanie(Zapotrzebowanie zapotrzebowanie){
-        if(!zapotrzebowania.contains(zapotrzebowanie))
+    public void removeZapotrzebowanie(Zapotrzebowanie zapotrzebowanie) {
+        if (!zapotrzebowania.contains(zapotrzebowanie))
             return;
         zapotrzebowania.remove(zapotrzebowanie);
         zapotrzebowanie.setMaterial(null);
     }
 
+    public List<UzytyMaterial> getUzyteMaterialy() {
+        return new ArrayList<UzytyMaterial>(uzyteMaterialy);
+    }
+
+    public void addUzytyMaterial(UzytyMaterial uzytyMaterial){
+        if(uzyteMaterialy == null){
+            uzyteMaterialy = new ArrayList<>();
+            uzyteMaterialy.add(uzytyMaterial);
+            uzytyMaterial.setMaterial(this);
+            return;
+        }
+        if(uzyteMaterialy.contains(uzytyMaterial))
+            return;
+        uzyteMaterialy.add(uzytyMaterial);
+        uzytyMaterial.setMaterial(this);
+    }
+
+    public void removeUzytyMaterial(UzytyMaterial uzytyMaterial){
+        if(!uzyteMaterialy.contains(uzytyMaterial))
+            return;
+        uzyteMaterialy.remove(uzytyMaterial);
+        uzytyMaterial.setMaterial(null);
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Material{" +
                 "id= " + id
-                +", nazwa= " + nazwa
-                +", ilosc" + ilosc
-                +", cena_jedn" + cena_jedn;
+                + ", nazwa= " + nazwa
+                + ", ilosc" + ilosc
+                + ", cena_jedn" + cena_jedn;
     }
 }

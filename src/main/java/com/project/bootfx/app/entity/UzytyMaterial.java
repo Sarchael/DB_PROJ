@@ -1,16 +1,16 @@
 package com.project.bootfx.app.entity;
 
-import com.project.bootfx.app.entity.keys.UzyteMaterialyKey;
+import com.project.bootfx.app.entity.keys.UzytyMaterialKey;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="uzyty_material")
-public class UzyteMaterialy {
+public class UzytyMaterial {
 
     @EmbeddedId
-    UzyteMaterialyKey id;
+    UzytyMaterialKey id;
 
     @ManyToOne
     @MapsId("id_mat")
@@ -27,18 +27,18 @@ public class UzyteMaterialy {
     @Column(name="ilosc")
     private int ilosc;
 
-    public UzyteMaterialy() {
+    public UzytyMaterial() {
     }
 
-    public UzyteMaterialy(int ilosc) {
+    public UzytyMaterial(int ilosc) {
         this.ilosc = ilosc;
     }
 
-    public UzyteMaterialyKey getId() {
+    public UzytyMaterialKey getId() {
         return id;
     }
 
-    public void setId(UzyteMaterialyKey id) {
+    public void setId(UzytyMaterialKey id) {
         this.id = id;
     }
 
@@ -52,9 +52,9 @@ public class UzyteMaterialy {
         Material oldMaterial = this.material;
         this.material = material;
         if(oldMaterial!=null)
-            oldMaterial.remoteUzyteMaterialy(this);
+            oldMaterial.removeUzytyMaterial(this);
         if(material!=null)
-            material.addUzyteMaterialy(this);
+            material.addUzytyMaterial(this);
     }
 
     public Naprawa getNaprawa() {
@@ -67,9 +67,9 @@ public class UzyteMaterialy {
         Naprawa oldNaprawa = this.naprawa;
         this.naprawa = naprawa;
         if(oldNaprawa!=null)
-            oldNaprawa.remoteUzyteMaterialy(this);
+            oldNaprawa.removeUzytyMaterial(this);
         if(naprawa!=null)
-            naprawa.addUzyteMaterialy(this);
+            naprawa.addUzytyMaterial(this);
     }
 
     public int getIlosc() {
