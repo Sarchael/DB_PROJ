@@ -21,13 +21,13 @@ public class Material {
     @Column(name = "cena_jedn")
     private int cena_jedn;
 
-    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "material")
     private List<Zapotrzebowanie> zapotrzebowania;
 
-    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "material")
     private List<ZamowionyMaterial> zamowioneMaterialy;
 
-    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "material")
     private List<UzytyMaterial> uzyteMaterialy;
 
     Material() {
