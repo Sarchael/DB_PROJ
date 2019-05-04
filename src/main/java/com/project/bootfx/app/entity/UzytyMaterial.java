@@ -90,7 +90,7 @@ public class UzytyMaterial {
 
     @Override
     public String toString() {
-        return "Miasto{" +
+        return "UzytyMaterial{" +
                 "id=" + id.toString() +
                 ", ilosc=" + ilosc +
                 '}';
