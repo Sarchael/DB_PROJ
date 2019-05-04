@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="663" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.DodajKlientaTabController">
+   <children>
+      <Button layoutX="441.0" layoutY="561.0" mnemonicParsing="false" onAction="#dodajKlienta" prefHeight="37.0" prefWidth="141.0" text="Dodaj">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfImie" layoutX="359.0" layoutY="170.0" prefHeight="27.0" prefWidth="284.0" promptText="imię" />
+      <TextField fx:id="tfNazwisko" layoutX="359.0" layoutY="202.0" prefHeight="27.0" prefWidth="284.0" promptText="nazwisko" />
+      <TextField fx:id="tfPesel" layoutX="359.0" layoutY="234.0" prefHeight="27.0" prefWidth="284.0" promptText="pesel" />
+      <TextField fx:id="tfUlica" layoutX="359.0" layoutY="266.0" prefHeight="27.0" prefWidth="284.0" promptText="ulica" />
+      <TextField fx:id="tfNip" layoutX="359.0" layoutY="298.0" prefHeight="27.0" prefWidth="284.0" promptText="nip (opcjonalne)" />
+      <ComboBox fx:id="cbMiasto" layoutX="359.0" layoutY="330.0" prefHeight="25.0" prefWidth="284.0" promptText="miasto" />
+   </children>
+</AnchorPane>

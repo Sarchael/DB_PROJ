@@ -1,5 +1,8 @@
 package com.project.bootfx.app.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,7 @@ public class Miasto {
     private List<Dostawca> dostawcy;
 
     @OneToMany(mappedBy = "miasto")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Klient> klienci;
 
     public Miasto() {

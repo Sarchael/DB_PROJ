@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class DatAccessObject implements IDataAccessObject {
+public class DataAccessObject implements IDataAccessObject {
 
     @Autowired
     private EntityManager entityManager;

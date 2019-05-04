@@ -149,14 +149,16 @@ public class Klient {
     }
 
     @Override
-    public String toString(){
-        return "Dostawca{" +
-                "id= " + id
-                +", nazwisko= " + nazwisko
-                +", pesel= " + pesel
-                +", ulica= " + ulica
-                +", nip" + nip
-                +", rabat" + rabat
-                +", miasto" + miasto.getNazwa();
+    public String toString() {
+        return "Klient{" +
+                "id=" + id +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", ulica='" + ulica + '\'' +
+                ", nip='" + nip + '\'' +
+                ", rabat=" + rabat +
+                ", miasto=" + miasto +
+                '}';
     }
 }

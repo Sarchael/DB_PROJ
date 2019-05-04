@@ -3,7 +3,7 @@ package com.project.bootfx.app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +13,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpringBootFxApplication extends Application {
 
     private ConfigurableApplicationContext springContext;
-    private AnchorPane anchorPane;
+    private TabPane tabPane;
     private FXMLLoader fxmlLoader;
 
-    private static final String ANCHOR_PANEFXML = "/AnchorPane.fxml";
+    private static final String TAB_PANE = "/TabPane.fxml";
 
     public static void main(String[] args) {
         launch(args);
@@ -30,12 +30,12 @@ public class SpringBootFxApplication extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {;
-        fxmlLoader.setLocation(getClass().getResource(ANCHOR_PANEFXML));
-        anchorPane = fxmlLoader.load();
+    public void start(Stage primaryStage) throws Exception {
+        fxmlLoader.setLocation(getClass().getResource(TAB_PANE));
+        tabPane = fxmlLoader.load();
 
         primaryStage.setTitle("Hello World");
-        Scene scene = new Scene(anchorPane);
+        Scene scene = new Scene(tabPane);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
