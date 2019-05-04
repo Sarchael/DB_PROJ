@@ -1,8 +1,9 @@
 package com.project.bootfx.app.entity;
 
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "model")
@@ -21,6 +22,9 @@ public class Model {
 
     @Column(name = "wersja")
     private String wersja;
+
+    @OneToMany(mappedBy = "model", fetch = FetchType.EAGER)
+    private List<Samochod> samochody;
 
     public Model() {
     }
@@ -61,6 +65,30 @@ public class Model {
 
     public void setWersja(String wersja) {
         this.wersja = wersja;
+    }
+
+    public List<Samochod> getSamochody() {
+        return samochody;
+    }
+
+    public void addSamochod(Samochod samochod){
+        if(samochody == null){
+            samochody = new ArrayList<>();
+            samochody.add(samochod);
+            samochod.setModel(this);
+            return;
+        }
+        if(samochody.contains(samochod))
+            return;
+        samochody.add(samochod);
+        samochod.setModel(this);
+    }
+
+    public void removeSamochod(Samochod samochod){
+        if(!samochody.contains(samochod))
+            return;
+        samochody.remove(samochod);
+        samochod.setModel(null);
     }
 
     @Override

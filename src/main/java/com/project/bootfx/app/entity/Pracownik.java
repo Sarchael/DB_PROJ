@@ -1,6 +1,8 @@
 package com.project.bootfx.app.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="pracownik")
@@ -30,6 +32,9 @@ public class Pracownik {
     @ManyToOne
     @JoinColumn(name="id_stan")
     private Stanowisko stanowisko;
+
+    @OneToMany(mappedBy = "pracownik", fetch = FetchType.EAGER)
+    private List<Naprawa> naprawyOdp;
 
     public Pracownik() {
     }
@@ -117,6 +122,30 @@ public class Pracownik {
 
     private boolean sameAsFormer(Stanowisko newStanowisko) {
         return stanowisko==null? newStanowisko == null : stanowisko.equals(newStanowisko);
+    }
+
+    public List<Naprawa> getNaprawyOdp() {
+        return naprawyOdp;
+    }
+
+    public void addNaprawaOdp(Naprawa naprawa){
+        if(naprawyOdp == null){
+            naprawyOdp = new ArrayList<>();
+            naprawyOdp.add(naprawa);
+            naprawa.setPracownikOdp(this);
+            return;
+        }
+        if(naprawyOdp.contains(naprawa))
+            return;
+        naprawyOdp.add(naprawa);
+        naprawa.setPracownikOdp(this);
+    }
+
+    public void removeNaprawaOdp(Naprawa naprawa){
+        if(!naprawyOdp.contains(naprawa))
+            return;
+        naprawyOdp.remove(naprawa);
+        naprawa.setPracownikOdp(null);
     }
 
     @Override

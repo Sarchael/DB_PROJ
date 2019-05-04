@@ -30,7 +30,7 @@ public class Naprawa {
 
     @ManyToOne
     @JoinColumn(name = "id_prac_odp")
-    private Pracownik pracownik;
+    private Pracownik pracownikOdp;
 
     public Naprawa() {
     }
@@ -87,15 +87,37 @@ public class Naprawa {
     }
 
     public void setSamochod(Samochod samochod) {
+        if(sameAsFormer(samochod))
+            return;
+        Samochod oldSamochod = this.samochod;
         this.samochod = samochod;
+        if(oldSamochod!=null)
+            oldSamochod.removeNaprawa(this);
+        if(samochod!=null)
+            samochod.addNaprawa(this);
     }
 
-    public Pracownik getPracownik() {
-        return pracownik;
+    private boolean sameAsFormer(Samochod newSamochod) {
+        return samochod==null? newSamochod == null : samochod.equals(newSamochod);
     }
 
-    public void setPracownik(Pracownik pracownik) {
-        this.pracownik = pracownik;
+    public Pracownik getPracownikOdp() {
+        return pracownikOdp;
+    }
+
+    public void setPracownikOdp(Pracownik pracownikOdp) {
+        if(sameAsFormer2(pracownikOdp))
+            return;
+        Pracownik oldPracownikOdp = this.pracownikOdp;
+        this.pracownikOdp = pracownikOdp;
+        if(oldPracownikOdp!=null)
+            oldPracownikOdp.removeNaprawaOdp(this);
+        if(pracownikOdp!=null)
+            pracownikOdp.addNaprawaOdp(this);
+    }
+
+    private boolean sameAsFormer2(Pracownik newPracownikOdp) {
+        return pracownikOdp==null? newPracownikOdp == null : pracownikOdp.equals(newPracownikOdp);
     }
 
     @Override
@@ -107,7 +129,7 @@ public class Naprawa {
                 ", data=" + data +
                 ", postep='" + postep + '\'' +
                 ", samochod=" + samochod +
-                ", pracownik=" + pracownik +
+                ", pracownikOdp=" + pracownikOdp +
                 '}';
     }
 }
