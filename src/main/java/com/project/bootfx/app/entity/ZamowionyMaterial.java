@@ -72,4 +72,12 @@ public class ZamowionyMaterial {
     public Zamowienie getZamowienie() {
         return zamowienie;
     }
+
+    @Override
+    public String toString() {
+        return "ZamowionyMaterial{" +
+                "id_mat=" + id.getId_mat() +
+                ", id_zam='" + id.getId_zam() +
+                '}';
+    }
 }
