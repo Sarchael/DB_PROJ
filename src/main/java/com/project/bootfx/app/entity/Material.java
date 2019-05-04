@@ -1,6 +1,8 @@
 package com.project.bootfx.app.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "material")
@@ -18,6 +20,9 @@ public class Material {
 
     @Column(name ="cena_jedn")
     private int cena_jedn;
+
+    @OneToMany(mappedBy = "zapotrzebowanie", fetch = FetchType.EAGER)
+    private List<Zapotrzebowanie> zapotrzebowania;
 
     Material(){
 
@@ -62,9 +67,33 @@ public class Material {
         this.cena_jedn = cena_jedn;
     }
 
+    public List<Zapotrzebowanie> getZapotrzebowania() {
+        return new ArrayList<Zapotrzebowanie>(zapotrzebowania);
+    }
+
+    public void addZapotrzebowanie(Zapotrzebowanie zapotrzebowanie){
+        if(zapotrzebowania == null){
+            zapotrzebowania = new ArrayList<>();
+            zapotrzebowania.add(zapotrzebowanie);
+            zapotrzebowanie.setMaterial(this);
+            return;
+        }
+        if(zapotrzebowania.contains(zapotrzebowanie))
+            return;
+        zapotrzebowania.add(zapotrzebowanie);
+        zapotrzebowanie.setMaterial(this);
+    }
+
+    public void removeZapotrzebowanie(Zapotrzebowanie zapotrzebowanie){
+        if(!zapotrzebowania.contains(zapotrzebowanie))
+            return;
+        zapotrzebowania.remove(zapotrzebowanie);
+        zapotrzebowanie.setMaterial(null);
+    }
+
     @Override
     public String toString(){
-        return "Dostawca{" +
+        return "Material{" +
                 "id= " + id
                 +", nazwa= " + nazwa
                 +", ilosc" + ilosc

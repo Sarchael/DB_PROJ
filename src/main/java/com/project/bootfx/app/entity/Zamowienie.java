@@ -63,14 +63,14 @@ public class Zamowienie {
     }
 
     public void setDostawca(Dostawca dostawca) {
-        /*if(sameAsFormer(dostawca))
+        if(sameAsFormer(dostawca))
             return;
         Dostawca oldDostawca = this.dostawca;
         this.dostawca = dostawca;
         if(oldDostawca!=null)
-            oldDostawca.remove(this);
+            oldDostawca.removeZamowienie(this);
         if(dostawca!=null)
-            dostawca.addZamowienie(this);*/
+            dostawca.addZamowienie(this);
     }
 
     private boolean sameAsFormer(Dostawca newDostawca) {
