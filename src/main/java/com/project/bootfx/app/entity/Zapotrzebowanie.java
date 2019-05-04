@@ -46,14 +46,14 @@ public class Zapotrzebowanie {
     }
 
     public void setMaterial(Material material) {
-        /*if(sameAsFormer(material))
+        if(sameAsFormer(material))
             return;
         Material oldMaterial = this.material;
         this.material = material;
         if(oldMaterial!=null)
-            oldMaterial.remove(this);
+            oldMaterial.removeZapotrzebowanie(this);
         if(material!=null)
-            material.addZapotrzebowanie(this);*/
+            material.addZapotrzebowanie(this);
     }
 
     private boolean sameAsFormer(Material newMaterial) {
