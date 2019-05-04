@@ -51,4 +51,12 @@ public class UzytyMaterialKey implements Serializable {
     public int hashCode() {
         return Objects.hash(materialId, naprawaId);
     }
+
+    @Override
+    public String toString() {
+        return "UzytyMaterialKey{" +
+                "id_mat=" + materialId +
+                ", id_nap='" + naprawaId + '\'' +
+                '}';
+    }
 }
