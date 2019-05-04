@@ -36,6 +36,9 @@ public class Pracownik {
     @OneToMany(mappedBy = "pracownikOdp", fetch = FetchType.EAGER)
     private List<Naprawa> naprawyOdp;
 
+    @OneToMany(mappedBy = "pracownik")
+    private List<WykonawcaNaprawy> listaNapraw;
+
     public Pracownik() {
     }
 
@@ -146,6 +149,30 @@ public class Pracownik {
             return;
         naprawyOdp.remove(naprawa);
         naprawa.setPracownikOdp(null);
+    }
+
+    public List<WykonawcaNaprawy> getListaNapraw() {
+        return listaNapraw;
+    }
+
+    public void addListaNapraw(WykonawcaNaprawy wykonawcaNaprawy){
+        if(listaNapraw == null){
+            listaNapraw = new ArrayList<>();
+            listaNapraw.add(wykonawcaNaprawy);
+            wykonawcaNaprawy.setPracownik(this);
+            return;
+        }
+        if(listaNapraw.contains(wykonawcaNaprawy))
+            return;
+        listaNapraw.add(wykonawcaNaprawy);
+        wykonawcaNaprawy.setPracownik(this);
+    }
+
+    public void removeListaNapraw(WykonawcaNaprawy wykonawcaNaprawy){
+        if(!listaNapraw.contains(wykonawcaNaprawy))
+            return;
+        listaNapraw.remove(wykonawcaNaprawy);
+        wykonawcaNaprawy.setPracownik(null);
     }
 
     @Override

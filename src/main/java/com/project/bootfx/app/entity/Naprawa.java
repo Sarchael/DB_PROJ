@@ -37,6 +37,9 @@ public class Naprawa {
     @OneToMany(mappedBy = "naprawa")
     private List<UzytyMaterial> uzyteMaterialy;
 
+    @OneToMany(mappedBy = "naprawa")
+    private List<WykonawcaNaprawy> listaPracownikow;
+
     public Naprawa() {
     }
 
@@ -147,6 +150,26 @@ public class Naprawa {
             return;
         uzyteMaterialy.remove(uzytyMaterial);
         uzytyMaterial.setNaprawa(null);
+    }
+
+    public void addListaPracownikow(WykonawcaNaprawy wykonawcaNaprawy){
+        if(listaPracownikow == null){
+            listaPracownikow = new ArrayList<>();
+            listaPracownikow.add(wykonawcaNaprawy);
+            wykonawcaNaprawy.setNaprawa(this);
+            return;
+        }
+        if(listaPracownikow.contains(wykonawcaNaprawy))
+            return;
+        listaPracownikow.add(wykonawcaNaprawy);
+        wykonawcaNaprawy.setNaprawa(this);
+    }
+
+    public void removeListaPracownikow(WykonawcaNaprawy wykonawcaNaprawy){
+        if(!listaPracownikow.contains(wykonawcaNaprawy))
+            return;
+        listaPracownikow.remove(wykonawcaNaprawy);
+        wykonawcaNaprawy.setNaprawa(null);
     }
 
     @Override
