@@ -76,7 +76,18 @@ public class Dostawca {
     }
 
     public void setMiasto(Miasto miasto) {
+        if(sameAsFormer(miasto))
+            return;
+        Miasto oldMiasto = this.miasto;
         this.miasto = miasto;
+        if(oldMiasto!=null)
+            oldMiasto.removeDostawca(this);
+        if(miasto!=null)
+            miasto.addDostawca(this);
+    }
+
+    private boolean sameAsFormer(Miasto newMiasto) {
+        return miasto==null? newMiasto == null : miasto.equals(newMiasto);
     }
 
     public List<Zamowienie> getZamowienia() {

@@ -33,6 +33,9 @@ public class Klient {
     @JoinColumn(name ="id_miasta")
     private Miasto miasto;
 
+    @OneToMany(mappedBy = "klient", fetch = FetchType.EAGER)
+    private List<Zamowienie> zamowienia;
+
     public Klient() {
     }
 
