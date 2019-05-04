@@ -27,6 +27,9 @@ public class Material {
     @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
     private List<ZamowionyMaterial> zamowioneMaterialy;
 
+    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    private List<UzytyMaterial> uzyteMaterialy;
+
     Material() {
 
     }
@@ -116,6 +119,30 @@ public class Material {
             return;
         zapotrzebowania.remove(zapotrzebowanie);
         zapotrzebowanie.setMaterial(null);
+    }
+
+    public List<UzytyMaterial> getUzyteMaterialy() {
+        return new ArrayList<UzytyMaterial>(uzyteMaterialy);
+    }
+
+    public void addUzytyMaterial(UzytyMaterial uzytyMaterial){
+        if(uzyteMaterialy == null){
+            uzyteMaterialy = new ArrayList<>();
+            uzyteMaterialy.add(uzytyMaterial);
+            uzytyMaterial.setMaterial(this);
+            return;
+        }
+        if(uzyteMaterialy.contains(uzytyMaterial))
+            return;
+        uzyteMaterialy.add(uzytyMaterial);
+        uzytyMaterial.setMaterial(this);
+    }
+
+    public void removeUzytyMaterial(UzytyMaterial uzytyMaterial){
+        if(!uzyteMaterialy.contains(uzytyMaterial))
+            return;
+        uzyteMaterialy.remove(uzytyMaterial);
+        uzytyMaterial.setMaterial(null);
     }
 
     @Override

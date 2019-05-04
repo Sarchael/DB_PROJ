@@ -52,9 +52,9 @@ public class UzytyMaterial {
         Material oldMaterial = this.material;
         this.material = material;
         if(oldMaterial!=null)
-            oldMaterial.remoteUzyteMaterialy(this);
+            oldMaterial.removeUzytyMaterial(this);
         if(material!=null)
-            material.addUzyteMaterialy(this);
+            material.addUzytyMaterial(this);
     }
 
     public Naprawa getNaprawa() {
