@@ -63,52 +63,27 @@ public class Zamowienie {
     }
 
     public void setDostawca(Dostawca dostawca) {
-        if(sameAsFormer(dostawca))
+        /*if(sameAsFormer(dostawca))
             return;
         Dostawca oldDostawca = this.dostawca;
         this.dostawca = dostawca;
         if(oldDostawca!=null)
             oldDostawca.remove(this);
         if(dostawca!=null)
-            dostawca.addMiasto(this);
+            dostawca.addZamowienie(this);*/
     }
 
-    private boolean sameAsFormer(Wojewodztwo newWojewodztwo) {
-        return wojewodztwo==null? newWojewodztwo == null : wojewodztwo.equals(newWojewodztwo);
-    }
-
-    public List<Pracownik> getPracownicy() {
-        return new ArrayList<Pracownik>(pracownicy);
-    }
-
-    public void addPracownik(Pracownik pracownik){
-        if(pracownicy == null){
-            pracownicy = new ArrayList<>();
-            pracownicy.add(pracownik);
-            pracownik.setMiasto(this);
-            return;
-        }
-        if(pracownicy.contains(pracownik))
-            return;
-        pracownicy.add(pracownik);
-        pracownik.setMiasto(this);
-    }
-
-    public void removePracownik(Pracownik pracownik){
-        if(!pracownicy.contains(pracownik))
-            return;
-        pracownicy.remove(pracownik);
-        pracownik.setMiasto(null);
+    private boolean sameAsFormer(Dostawca newDostawca) {
+        return dostawca==null? newDostawca == null : dostawca.equals(newDostawca);
     }
 
     @Override
     public String toString() {
-        return "Miasto{" +
+        return "Zamowienie{" +
                 "id=" + id +
-                ", nazwa='" + nazwa + '\'' +
-                ", gmina='" + gmina + '\'' +
-                ", powiat='" + powiat + '\'' +
-                ", wojewodztwo=" + wojewodztwo +
+                ", ilosc='" + ilosc + '\'' +
+                ", status='" + status + '\'' +
+                ", dostawca=" + dostawca +
                 '}';
     }
 }
