@@ -1,12 +1,7 @@
 package com.project.bootfx.app.controllers;
 
-import com.project.bootfx.app.dao.MiastoDAO;
-import com.project.bootfx.app.dao.PracownikDAO;
-import com.project.bootfx.app.dao.StanowiskoDAO;
-import com.project.bootfx.app.dao.WojewodztwoDAO;
+import com.project.bootfx.app.dao.*;
 import com.project.bootfx.app.entity.Miasto;
-import com.project.bootfx.app.entity.Pracownik;
-import com.project.bootfx.app.entity.Stanowisko;
 import com.project.bootfx.app.entity.Wojewodztwo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,16 +15,7 @@ import java.util.List;
 public class AnchorPaneController {
 
     @Autowired
-    private PracownikDAO pracownikDAO;
-
-    @Autowired
-    private MiastoDAO miastoDAO;
-
-    @Autowired
-    private WojewodztwoDAO wojewodztwoDAO;
-
-    @Autowired
-    private StanowiskoDAO stanowiskoDAO;
+    private IDataAccessObject dataAccessObject;
 
     @FXML
     private TextField tfID;
@@ -72,10 +58,11 @@ public class AnchorPaneController {
         pracownik.setStanowisko(stanowisko);
         pracownikDAO.save(pracownik);*/
 
-        Wojewodztwo woj = wojewodztwoDAO.getByID(1);
+        Wojewodztwo woj = dataAccessObject.getById(Wojewodztwo.class, 1);
         List<Miasto> lista = woj.getMiasta();
         for(Miasto m : lista)
             System.out.println(m);
+
     }
 
     @FXML
