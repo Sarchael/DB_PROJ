@@ -1,5 +1,7 @@
 package com.project.bootfx.app.entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

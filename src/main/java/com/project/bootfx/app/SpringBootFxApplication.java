@@ -36,7 +36,9 @@ public class SpringBootFxApplication extends Application {
 
         primaryStage.setTitle("Hello World");
         Scene scene = new Scene(tabPane);
+        scene.getStylesheets().add("test.css");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

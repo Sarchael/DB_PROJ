@@ -33,24 +33,34 @@ public class TabPaneController {
 
     @FXML
     public void initialize() throws Exception{
+
+        tabPane.getStylesheets().add("test.css");
+        tabPane.getStyleClass().add("tab-pane");
+        tabDodajKlienta.getStyleClass().add("single-tab");
+        tabDodajSamochod.getStyleClass().add("single-tab");
+        tabWyszukajKlienta.getStyleClass().add("single-tab");
+
         AnchorPane anchorPane;
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
         fxmlLoader.setLocation(getClass().getResource("/WyszukajKlienta.fxml"));
         anchorPane = fxmlLoader.load();
+        anchorPane.getStyleClass().add("background");
         tabWyszukajKlienta.setContent(anchorPane);
 
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
         fxmlLoader.setLocation(getClass().getResource("/DodajKlienta.fxml"));
         anchorPane = fxmlLoader.load();
+        anchorPane.getStyleClass().add("background");
         tabDodajKlienta.setContent(anchorPane);
 
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
         fxmlLoader.setLocation(getClass().getResource("/DodajSamochod.fxml"));
         anchorPane = fxmlLoader.load();
+        anchorPane.getStyleClass().add("background");
         tabDodajSamochod.setContent(anchorPane);
     }
 

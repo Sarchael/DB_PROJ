@@ -6,6 +6,7 @@ import com.project.bootfx.app.entity.Miasto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class DodajKlientaTabController {
 
     @Autowired
     private IDataAccessObject dataAccessObject;
+
+    @FXML
+    private Button bDodaj;
 
     @FXML
     private TextField tfImie;
@@ -79,6 +83,7 @@ public class DodajKlientaTabController {
 
         ObservableList<String> fxNazwyMiast = FXCollections.observableList(nazwyMiast);
         cbMiasto.setItems(fxNazwyMiast);
+        //bDodaj.getStyleClass().add("button");
     }
 
     private void clearLabels(){

@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="663" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.DodajKlientaTabController">
    <children>
-      <Button layoutX="441.0" layoutY="561.0" mnemonicParsing="false" onAction="#dodajKlienta" prefHeight="37.0" prefWidth="141.0" text="Dodaj">
+      <Button fx:id="bDodaj" layoutX="401.0" layoutY="558.0" mnemonicParsing="false" onAction="#dodajKlienta" prefHeight="40.0" prefWidth="200.0" text="Dodaj">
          <font>
             <Font size="17.0" />
          </font>
