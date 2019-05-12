@@ -3,7 +3,7 @@ package com.project.bootfx.app.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="zamowienie")
+@Table(name="zapotrzebowanie")
 public class Zapotrzebowanie {
 
     @Id

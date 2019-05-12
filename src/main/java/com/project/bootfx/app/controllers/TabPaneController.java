@@ -35,6 +35,9 @@ public class TabPaneController {
     private Tab tabNaprawy;
 
     @FXML
+    private Tab tabZapotrzebowanie;
+
+    @FXML
     public void initialize() throws Exception{
 
         tabPane.getStylesheets().add("test.css");
@@ -43,6 +46,7 @@ public class TabPaneController {
         tabDodajSamochod.getStyleClass().add("single-tab");
         tabWyszukajKlienta.getStyleClass().add("single-tab");
         tabNaprawy.getStyleClass().add("single-tab");
+        tabZapotrzebowanie.getStyleClass().add("single-tab");
 
         AnchorPane anchorPane;
 
@@ -73,6 +77,13 @@ public class TabPaneController {
         anchorPane = fxmlLoader.load();
         anchorPane.getStyleClass().add("background");
         tabNaprawy.setContent(anchorPane);
+
+        fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(context::getBean);
+        fxmlLoader.setLocation(getClass().getResource("/DodajZapotrzebowanie.fxml"));
+        anchorPane = fxmlLoader.load();
+        anchorPane.getStyleClass().add("background");
+        tabZapotrzebowanie.setContent(anchorPane);
     }
 
     public void onSamochodTabSelected(Event event) {

@@ -1,5 +1,8 @@
 package com.project.bootfx.app.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ public class Material {
     private int cena_jedn;
 
     @OneToMany(mappedBy = "material")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Zapotrzebowanie> zapotrzebowania;
 
     @OneToMany(mappedBy = "material")

@@ -9,9 +9,9 @@
 <AnchorPane prefHeight="663.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.DodajNapraweController">
    <children>
       <TextArea fx:id="taOpis" layoutX="222.0" layoutY="96.0" prefHeight="121.0" prefWidth="556.0" promptText="opis przeprowadzanej naprawy..." />
-      <ComboBox fx:id="cbKlienci" layoutX="425.0" layoutY="266.0" onAction="#onKlientAction" prefWidth="150.0" promptText="klient" />
-      <ComboBox fx:id="cbSamochody" layoutX="425.0" layoutY="345.0" prefWidth="150.0" promptText="samochód" />
-      <ComboBox fx:id="cbPracownicy" layoutX="425.0" layoutY="423.0" prefWidth="150.0" promptText="pracownik" />
+      <ComboBox fx:id="cbKlienci" layoutX="358.0" layoutY="266.0" onAction="#onKlientAction" prefWidth="284.0" promptText="klient" />
+      <ComboBox fx:id="cbSamochody" layoutX="358.0" layoutY="345.0" prefWidth="284.0" promptText="samochód" />
+      <ComboBox fx:id="cbPracownicy" layoutX="358.0" layoutY="423.0" prefWidth="284.0" promptText="pracownik" />
       <Button fx:id="bPowrot" layoutX="276.0" layoutY="524.0" mnemonicParsing="false" onAction="#onPowrot" prefWidth="200.0" text="Powrót">
          <font>
             <Font name="System Bold" size="12.0" />
