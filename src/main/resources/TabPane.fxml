@@ -3,10 +3,11 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="316.0" tabMinHeight="30.0" tabMinWidth="316.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.TabPaneController">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="316.0" tabMinHeight="30.0" tabMinWidth="234.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.TabPaneController">
   <tabs>
     <Tab fx:id="tabWyszukajKlienta" text="Wyszukaj Klienta" />
     <Tab fx:id="tabDodajKlienta" text="Dodaj Klienta" />
       <Tab fx:id="tabDodajSamochod" onSelectionChanged="#onSamochodTabSelected" text="Dodaj Samochód" />
+      <Tab fx:id="tabNaprawy" text="Naprawy" />
   </tabs>
 </TabPane>

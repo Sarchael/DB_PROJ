@@ -10,27 +10,29 @@ import javax.persistence.*;
 public class UzytyMaterial {
 
     @EmbeddedId
-    UzytyMaterialKey id;
+    private UzytyMaterialKey id;
 
     @ManyToOne
     @MapsId("id_mat")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "id_mat")
-    Material material;
+    private Material material;
 
     @ManyToOne
     @MapsId("id_nap")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "id_nap")
-    Naprawa naprawa;
+    private Naprawa naprawa;
 
     @Column(name="ilosc")
     private int ilosc;
 
     public UzytyMaterial() {
+        id = new UzytyMaterialKey();
     }
 
     public UzytyMaterial(int ilosc) {
+        id = new UzytyMaterialKey();
         this.ilosc = ilosc;
     }
 

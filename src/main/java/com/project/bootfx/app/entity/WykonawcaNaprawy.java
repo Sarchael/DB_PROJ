@@ -31,9 +31,11 @@ public class WykonawcaNaprawy {
     private String wykonanaPraca;
 
     public WykonawcaNaprawy() {
+        id = new WykonawcaNaprawyKey();
     }
 
     public WykonawcaNaprawy(int czasPracy, String wykonanaPraca) {
+        id = new WykonawcaNaprawyKey();
         this.czasPracy = czasPracy;
         this.wykonanaPraca = wykonanaPraca;
     }

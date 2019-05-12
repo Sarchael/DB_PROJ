@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class ZamowionyMaterial {
 
     @EmbeddedId
-    ZamowionyMaterialKey id;
+    private ZamowionyMaterialKey id;
 
     @ManyToOne
     @MapsId("id_mat")
@@ -21,10 +21,10 @@ public class ZamowionyMaterial {
     @MapsId("id_zam")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "id_zam")
-    Zamowienie zamowienie;
+    private Zamowienie zamowienie;
 
-    ZamowionyMaterial() {
-
+    public ZamowionyMaterial() {
+        id = new ZamowionyMaterialKey();
     }
 
     public ZamowionyMaterialKey getId() {

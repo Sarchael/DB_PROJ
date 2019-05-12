@@ -1,5 +1,9 @@
 package com.project.bootfx.app.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +41,8 @@ public class Pracownik {
     private List<Naprawa> naprawyOdp;
 
     @OneToMany(mappedBy = "pracownik")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<WykonawcaNaprawy> listaNapraw;
 
     public Pracownik() {

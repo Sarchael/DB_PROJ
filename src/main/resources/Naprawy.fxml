@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="663.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.NaprawyTabController">
+   <children>
+      <ListView fx:id="lvNaprawy" layoutX="46.0" layoutY="21.0" prefHeight="530.0" prefWidth="920.0" />
+      <Button fx:id="bDodaj" layoutX="282.0" layoutY="584.0" mnemonicParsing="false" onAction="#onDodajNaprawe" prefWidth="200.0" text="Dodaj naprawę">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="bSzczegoly" disable="true" layoutX="519.0" layoutY="584.0" mnemonicParsing="false" prefWidth="200.0" text="Pokaż szczegóły">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
