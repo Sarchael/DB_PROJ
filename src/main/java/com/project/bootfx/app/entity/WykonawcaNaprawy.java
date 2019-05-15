@@ -59,8 +59,10 @@ public class WykonawcaNaprawy {
         this.pracownik = pracownik;
         if(oldPracownik!=null)
             oldPracownik.removeListaNapraw(this);
-        if(pracownik!=null)
+        if(pracownik!=null) {
             pracownik.addListaNapraw(this);
+            id.setIdPrac(pracownik.getId()); // IMPORTANT CHANGE!!!!
+        }
     }
 
     private boolean sameAsFormer(Pracownik newPracownik) {
@@ -78,8 +80,10 @@ public class WykonawcaNaprawy {
         this.naprawa = naprawa;
         if(oldNaprawa!=null)
             oldNaprawa.removeListaPracownikow(this);
-        if(naprawa!=null)
+        if(naprawa!=null) {
             naprawa.addListaPracownikow(this);
+            id.setIdNap(naprawa.getId()); // IMPORTANT CHANGE!!!!
+        }
     }
 
     private boolean sameAsFormer2(Naprawa newNaprawa) {

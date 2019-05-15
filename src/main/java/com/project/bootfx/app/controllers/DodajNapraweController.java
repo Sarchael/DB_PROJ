@@ -107,6 +107,9 @@ public class DodajNapraweController {
 
     public void onZatwierdz(ActionEvent actionEvent) throws IOException {
         Naprawa naprawa = new Naprawa();
+        WykonawcaNaprawy wykonawcaNaprawy = new WykonawcaNaprawy();
+        wykonawcaNaprawy.setCzasPracy(0);
+        wykonawcaNaprawy.setWykonanaPraca("");
         if (taOpis.getText().isEmpty()) {
             taOpis.setPromptText("Opis jest wymagany!");
             taOpis.clear();
@@ -136,6 +139,7 @@ public class DodajNapraweController {
                 String imieNazwisko = pracownik.getImie() + " " + pracownik.getNazwisko();
                 if(imieNazwisko.equals(cbPracownicy.getValue())){
                     naprawa.setPracownikOdp(pracownik);
+                    wykonawcaNaprawy.setPracownik(pracownik);
                     break;
                 }
             }
@@ -149,8 +153,9 @@ public class DodajNapraweController {
             naprawa.setOpis(taOpis.getText());
             naprawa.setPostep("Rozpoczęta.");
 
-
-            dataAccessObject.save(naprawa);
+            naprawa = dataAccessObject.save(naprawa);
+            wykonawcaNaprawy.setNaprawa(naprawa);
+            dataAccessObject.save(wykonawcaNaprawy);
            //clearLabels();
             wrocDoListy();
         }

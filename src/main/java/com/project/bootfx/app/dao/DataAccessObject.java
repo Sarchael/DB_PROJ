@@ -17,9 +17,10 @@ public class DataAccessObject implements IDataAccessObject {
 
     @Override
     @Transactional
-    public <T> void save(T c) {
+    public <T> T save(T c) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(c);
+        return c;
     }
 
     @Override

@@ -17,6 +17,11 @@ public class WykonawcaNaprawyKey implements Serializable {
     public WykonawcaNaprawyKey() {
     }
 
+    public WykonawcaNaprawyKey(int idNap, int idPrac) {
+        this.idNap = idNap;
+        this.idPrac = idPrac;
+    }
+
     public int getIdNap() {
         return idNap;
     }
