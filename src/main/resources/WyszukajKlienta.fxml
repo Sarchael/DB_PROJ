@@ -7,12 +7,13 @@
 
 <AnchorPane prefHeight="663" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.bootfx.app.controllers.WyszukajKlientaTabController">
    <children>
-      <TextField fx:id="tfSzukaj" layoutX="234.0" layoutY="96.0" prefHeight="25.0" prefWidth="200.0" promptText="Wyszukaj klienta" />
-      <TableView fx:id="tvKlienci" layoutX="234.0" layoutY="132.0" prefHeight="200.0" prefWidth="532.0" tableMenuButtonVisible="true">
+      <TextField fx:id="tfSzukaj" layoutX="272.0" layoutY="103.0" prefHeight="25.0" prefWidth="457.0" promptText="Wyszukaj klienta" />
+      <TableView fx:id="tvKlienci" layoutX="272.0" layoutY="139.0" prefHeight="408.0" prefWidth="457.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn prefWidth="111.0" text="Imię" />
-          <TableColumn prefWidth="111.0" text="Nazwisko" />
-           <TableColumn prefWidth="111.0" text="PESEL" />
+          <TableColumn fx:id="cImie" prefWidth="111.0" text="Imię" />
+          <TableColumn fx:id="cNazwisko" prefWidth="111.0" text="Nazwisko" />
+           <TableColumn fx:id="cPesel" prefWidth="111.0" text="PESEL" />
+           <TableColumn fx:id="cUlica" prefWidth="111.0" text="Ulica" />
         </columns>
       </TableView>
    </children>

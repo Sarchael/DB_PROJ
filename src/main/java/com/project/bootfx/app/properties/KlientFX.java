@@ -7,11 +7,13 @@ public class KlientFX {
     private final StringProperty imie;
     private final StringProperty nazwisko;
     private final StringProperty pesel;
+    private final StringProperty ulica;
 
-    public KlientFX(String imie, String nazwisko, String pesel) {
+    public KlientFX(String imie, String nazwisko, String pesel, String ulica) {
         this.imie = new SimpleStringProperty(imie);
         this.nazwisko = new SimpleStringProperty(nazwisko);
         this.pesel = new SimpleStringProperty(pesel);
+        this.ulica = new SimpleStringProperty(ulica);
     }
 
     public String getImie() {
@@ -48,5 +50,17 @@ public class KlientFX {
 
     public StringProperty peselProperty() {
         return pesel;
+    }
+
+    public String getUlica() {
+        return ulica.get();
+    }
+
+    public void setUlica(String ulica) {
+        this.ulica.set(ulica);
+    }
+
+    public StringProperty ulicaProperty() {
+        return ulica;
     }
 }
