@@ -1,0 +1,52 @@
+.button{
+    -fx-background-radius: 2em;
+    -fx-background-color: royalblue;
+    -fx-pref-width: 200;
+    -fx-pref-height: 40;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-font-family: "System";
+}
+.button:hover{
+    -fx-background-color: #6189ff;
+}
+
+
+.background{
+    -fx-background-color: #3c3c3c;
+}
+
+
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: #3c3c3c;
+}
+
+
+.single-tab{
+    -fx-background-color: #e6e6e6;
+    -fx-text-base-color: #3c3c3c;
+    -fx-focus-color: transparent;
+    -fx-background-radius: 10 10 0 0;
+    -fx-font-weight: bold;
+}
+.single-tab:hover{
+    -fx-background-color: #c6c6c6;
+}
+.single-tab:selected{
+    -fx-background-color: #9acd32;
+}
+
+.text-field{
+    -fx-background-color: #b8b8b8;
+    -fx-prompt-text-fill: #97212a;
+}
+.text-field:hover{
+    -fx-cursor: default;
+}
+.combo-box{
+    -fx-background-color: #b8b8b8;
+}
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: #b8b8b8;
+    -fk-focus-color: transparent;
+}
