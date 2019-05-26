@@ -1,9 +1,13 @@
 package com.project.bootfx.app.properties;
 
+import com.project.bootfx.app.properties.interfaces.PropertiesProvider;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class KlientFX {
+import java.util.HashMap;
+import java.util.Map;
+
+public class KlientFX implements PropertiesProvider {
     private final StringProperty imie;
     private final StringProperty nazwisko;
     private final StringProperty pesel;
@@ -62,5 +66,17 @@ public class KlientFX {
 
     public StringProperty ulicaProperty() {
         return ulica;
+    }
+
+    @Override
+    public Map<String, StringProperty> provideProperties() {
+        Map<String, StringProperty> properties = new HashMap<>();
+
+        properties.put("imie", imie);
+        properties.put("nazwisko", nazwisko);
+        properties.put("pesel", pesel);
+        properties.put("ulica", ulica);
+
+        return properties;
     }
 }

@@ -10,6 +10,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -91,7 +93,20 @@ public class WyszukajKlientaTabController {
         //Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(tvKlienci.comparatorProperty());
 
-        // 5. Add sorted (and filtered) data to the table.
+        //Add sorted (and filtered) data to the table.
         tvKlienci.setItems(sortedData);
+
+        //Setting listener on row doubleclicks
+        tvKlienci.setRowFactory( tv -> {
+            TableRow<KlientFX> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    KlientFX rowData = row.getItem();
+                    //Displaying popup window with properties
+                    SzczegolyWindowController.display(rowData);
+                }
+            });
+            return row ;
+        });
     }
 }
